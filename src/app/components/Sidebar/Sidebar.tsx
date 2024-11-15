@@ -10,7 +10,7 @@ const Sidebar = () => {
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/hospitals', label: 'Hospitals', icon: Hospital },
     { href: '/appointments', label: 'Appointments', icon: CalendarRange },
-    { href: '/users', label: 'Users', icon: User },
+    { href: '/users', label: 'Profile', icon: User },
   ];
 
   return (
