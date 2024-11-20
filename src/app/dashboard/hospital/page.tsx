@@ -1,45 +1,82 @@
-"use client"
-import React from 'react';
-import { icons } from 'lucide-react';
-const hospitalData = [
-  {
-    name: 'Kicucito hospital',
-    address: 'kikukiro, cyimana L23n',
-    email: 'kicuki@hospital.com',
-    logo: icons.BedDouble,
-  },
-  {
-    name: 'Braveheart Hospital',
-    address: '123 Main St, Anytown USA',
-    email: 'info@braveheart.com',
-    logo: icons.BedDouble,
-  },
-  {
-    name: 'Wellness Clinic',
-    address: '456 Oak Rd, Somewhere CA',
-    email: 'contact@wellnessclinic.org',
-    logo: icons.BedDouble,
-  },
-];
+import React from "react";
 
-const HospitalCard = () => {
+function Hospital() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {hospitalData.map((hospital, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden w-full">
-          <div className="flex items-center p-4">
-              <hospital.logo className="w-16 p-4 h-16 rounded-full bg-primary text-white flex-shrink-0 " />
-            <div className="ml-4 flex-1">
-              <h2 className="text-lg font-medium text-gray-900">{hospital.name}</h2>
-              <p className="text-gray-600 text-sm">{hospital.address}</p>
-              <p className="text-gray-600 text-sm">{hospital.email}</p>
+    <div className="bg-gray-100 mb-4">
+      {/* Featured Hospital Section */}
+      <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Image Section */}
+          <img
+            src="https://via.placeholder.com/600x400" // Replace with the hospital image URL
+            alt="Ruhengeri hospital"
+            className="w-full h-64 object-cover rounded-lg"
+          />
+
+          {/* Hospital Details */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <h1 className="text-2xl font-bold mb-2">Ruhengeri Hospital</h1>
+              <p className="text-gray-600 mb-4">
+                Ruhengeri is the closest hospital from your current location and
+                is prepared for your blood donation. Take this opportunity,
+                don't miss it!
+              </p>
+              <p className="text-gray-500">
+                <span className="font-medium">Location:</span> Kigeme hospital
+                center, at 2:00pm
+              </p>
+              <a href="#" className="text-blue-500 underline mt-2 inline-block">
+                View all the appointments you had with this hospital
+              </a>
+            </div>
+            {/* Date and Donate Button */}
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-red-500 font-semibold">
+                <i className="far fa-calendar-alt"></i> January 21, 2022
+              </p>
+              <button className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">
+                Donate
+              </button>
             </div>
           </div>
-
         </div>
-      ))}
+      </div>
+
+      {/* Other Hospitals Section */}
+      <div>
+        <h2 className="text-xl font-bold mb-4">Other Hospitals</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Hospital Card */}
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="bg-white shadow-lg rounded-lg overflow-hidden"
+            >
+              <img
+                src="https://via.placeholder.com/400x300" // Replace with other hospital image URLs
+                alt="Hospital"
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-bold mb-2">Ruhengeri Hospital</h3>
+                <p className="text-gray-600 mb-4">
+                  Ruhengeri is another hospital that you can donate to.
+                </p>
+                <p className="text-gray-500">
+                  <span className="font-medium">Location:</span> Kigeme hospital
+                  center, at 2:00pm
+                </p>
+                <button className="bg-red-500 text-white mt-4 px-4 py-2 rounded shadow hover:bg-red-600">
+                  Donate
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default HospitalCard;
+export default Hospital;

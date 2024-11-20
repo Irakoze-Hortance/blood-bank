@@ -1,11 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 export const Topbar = () => {
+  const pathname = usePathname();
+  const lastPart = pathname.split("/").pop();
   return (
     <div className="h-16 sticky top-5 bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex justify-between items-center">
       <div>
         <h2 className="text-2xl font-semibold">Volunteer</h2>
-        <p>Dashboard</p>
+        <p className="capitalize">{lastPart}</p>
       </div>
       <div className="flex gap-3">
         <div className="text-right">
