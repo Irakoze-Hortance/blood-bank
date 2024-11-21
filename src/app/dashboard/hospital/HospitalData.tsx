@@ -24,7 +24,7 @@ const hospitalData = [
 
 const HospitalCard = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-6/7">
       {hospitalData.map((hospital, index) => (
         <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden w-full">
           <div className="flex items-center p-4">

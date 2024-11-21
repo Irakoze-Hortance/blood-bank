@@ -27,7 +27,7 @@ const donationsData=[
 const RecentTable=()=>{
     return(
 
-        <div className="container w-5/6 p-3  bg-white mt-6 border">
+        <div className="container w-full p-3  bg-white mt-6 border">
         <h2 className="text-lg font-semibold">Recent Donations</h2>
  
         <div className="flex items-center justify-between mb-6">
@@ -47,6 +47,7 @@ const RecentTable=()=>{
               <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Hospital</th>
               <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Email</th>
               <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Location</th>
+              <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Quantity</th>
               <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Date</th>
             </tr>
             </thead>

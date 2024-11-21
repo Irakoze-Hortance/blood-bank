@@ -5,6 +5,7 @@ import SignUp from "./signup/page";
 import Login from "./signin/page";
 import Dashboard from "./dashboard/page";
 import Appointments from "./appointments/page";
+import ProfilePage from "./profile/ProfilePage";
 export default function Home() {
   return (
           <Router>
@@ -14,6 +15,7 @@ export default function Home() {
           <Route path="/signin" Component={Login} />
           <Route path="/dashboard" Component={Dashboard} />
           <Route path="/appointments" Component={Appointments} />
+          <Route path="/profile" Component={ProfilePage} />
         </Routes>
       </Router>
 
