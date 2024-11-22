@@ -36,9 +36,11 @@ export function Sidebar() {
         ))}
       </div>
       <div className="mt-auto pt-4 mx-4">
-        <button className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">
-          Log Out
-        </button>
+        <Link href={"/signin"}>
+          <button className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">
+            Log Out
+          </button>
+        </Link>
       </div>
     </div>
   );
