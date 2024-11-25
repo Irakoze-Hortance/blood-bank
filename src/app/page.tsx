@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./signup/page";
 import Login from "./signin/page";
 import Dashboard from "./dashboard/page";
-import ProfilePage from "./profile/ProfilePage";
+import ProfilePage from "./dashboard/profile/ProfilePage";
 import Appointments from "./dashboard/appointments/page";
 export default function Home() {
   return (

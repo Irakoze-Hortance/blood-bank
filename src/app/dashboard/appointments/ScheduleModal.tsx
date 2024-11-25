@@ -1,5 +1,5 @@
 import React from "react";
-import { DialogContent, DialogOverlay, DialogTitle, DialogClose } from "@radix-ui/react-dialog";
+import { DialogContent, DialogOverlay, DialogTitle, DialogClose, DialogTrigger } from "@radix-ui/react-dialog";
 
 const ScheduleModal = ({ onClose }: { onClose: () => void }) => {
     return (
@@ -7,7 +7,12 @@ const ScheduleModal = ({ onClose }: { onClose: () => void }) => {
       <DialogOverlay
         className="fixed inset-0 bg-black/50"
         onClick={onClose}
-      />
+      />            
+      <DialogTrigger asChild>
+      <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+        Add Appointment
+      </button>
+    </DialogTrigger>
 
       <DialogContent
         className="fixed inset-0 flex items-center justify-center p-4"

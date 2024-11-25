@@ -1,10 +1,19 @@
 "use client"
 import Link  from "next/link";
+import { useRouter } from "next/navigation";
 
 const LoginForm=()=>{
+    const router=useRouter();
+    
+    interface FormEvent extends React.FormEvent<HTMLFormElement> {}
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        router.push("/dashboard");
+    }
     return (
         <div className="container max-w-md  p-4 mx-4">
-                <form className="space-y-4 border p-12 bg-white">
+                <form className="space-y-4 border p-12 bg-white" onSubmit={handleSubmit}>
                 <h1 className="text-3xl font-bold text-center">Welcome Back</h1>
                 <div>
                     <label className="text-sm p-1">Email</label>
@@ -23,9 +32,7 @@ const LoginForm=()=>{
                     </div>
                     <p  className="underline text-end ">Forgot Password?</p>
                     <div>
-                    <button className="w-full bg-primary p-2 text-white rounded-md">
-                        <Link href="/dashboard">Sign In</Link>
-                    </button>
+                    <button className="w-full bg-primary p-2 text-white rounded-md" type="submit">Login</button>
                     </div>
             <p className="text-end text-sm text-gray-400">
                     Don't have an account?
