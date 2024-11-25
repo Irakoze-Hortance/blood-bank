@@ -83,8 +83,6 @@ const DonorData = () => {
             <div className="text-gray-700">4</div>
           </div>
 
-          {/* Red Accent Bar */}
-          <div className="absolute right-0 top-0 bottom-0 w-1 bg-red-500"></div>
         </div>
       </Card>
     </div>
