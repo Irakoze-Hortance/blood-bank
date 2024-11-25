@@ -1,3 +1,4 @@
+import WeightModal from "@/app/dashboard/donations/AddModal";
 interface Donation {
   hospital: string;
   email: string;
@@ -35,9 +36,7 @@ export function DonationTable() {
     <div className="bg-white rounded-lg shadow-sm">
       <div className="flex justify-between items-center p-4 border-b border-gray-200">
         <h2 className="text-lg font-medium">Recent donations</h2>
-        <button className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm">
-          Add donation
-        </button>
+        <WeightModal />
       </div>
       <div className="p-4">
         <div className="flex items-center space-x-2 mb-4">

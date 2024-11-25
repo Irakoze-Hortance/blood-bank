@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import { Search, TriangleAlert } from "lucide-react";
+import WeightModal from "./AddModal";
+import { Dialog } from "@radix-ui/react-dialog";
 const donationsData=[
     {
         hospital:"Ruli Hospital",
@@ -24,7 +26,9 @@ const donationsData=[
         date:"12/12/2021",
     },
 ]
+
 const RecentTable=()=>{
+    const [isOpen, setIsOpen] = useState(false);
     return(
 
         <div className="container w-full p-3  bg-white mt-6 border">
@@ -39,7 +43,9 @@ const RecentTable=()=>{
             className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm "
           />
         </div>
-        <button className="bg-primary ml-auto text-white rounded-md p-2 ">Add Donation</button>
+       
+
+        <WeightModal />
         </div>
         <table  className="table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-40 overflow-x-auto">
             <thead>
