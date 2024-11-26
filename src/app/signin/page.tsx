@@ -1,50 +1,79 @@
-"use client"
-import Link  from "next/link";
+"use client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { signIn, signUp } from "@/services/auth";
+import { ISignIn, signInSchema } from "@/types/auth";
+import { IApiErrorResponse } from "@/types/shared";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
-const LoginForm=()=>{
-    const router=useRouter();
-    
-    interface FormEvent extends React.FormEvent<HTMLFormElement> {}
+const LoginForm = () => {
+  const router = useRouter();
+  const { mutate, isPending: isSigningIn } = useMutation({
+    onSuccess() {
+      toast.success("Welcome back");
+      router.push("/dashboard");
+    },
+    onError(error: IApiErrorResponse) {
+      toast.error(error?.message ?? "Failed to add new computer");
+    },
+    mutationFn: signIn,
+  });
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        router.push("/dashboard");
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISignIn>({
+    resolver: zodResolver(signInSchema),
+  });
 
+  const onSubmit = async (data: ISignIn) => {
+    mutate(data);
+  };
 
   return (
     <div className="container max-w-md  p-4 mx-4">
-      <form className="space-y-4 border p-12 bg-white">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 border p-12 bg-white"
+      >
         <h1 className="text-3xl font-bold text-center">Welcome Back</h1>
-        <div>
-          <label className="text-sm p-1">Email</label>
-          <input
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Enter Your Email"
-          />
-        </div>
-        <div>
-          <label className="text-sm p-1">Password</label>
-          <input
-            type="password"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Enter Your Password"
-          />
-        </div>
+        <Input
+          label="Email"
+          type="email"
+          {...register("email")}
+          placeholder="Enter your email"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Password"
+          type="password"
+          {...register("password")}
+          placeholder="Enter your password"
+          error={errors.password?.message}
+        />
         <p className="underline text-end ">Forgot Password?</p>
         <div>
-          <button
-            type="button"
-            className="w-full bg-primary p-2 text-white rounded-md"
+          <Button
+            type="submit"
+            isLoading={isSigningIn}
+            className="w-full"
+            variant="default"
           >
-            <Link href="/dashboard">Sign In</Link>
-          </button>
+            Sign In
+          </Button>
         </div>
         <p className="text-end text-sm text-gray-400">Don't have an account?</p>
-        <button type="button" className="w-full bg-black p-2 text-white ">
-          <Link href="/signup">Sign Up</Link>
-        </button>
+        <Link href="/signup">
+          <Button variant={"default"} className="w-full">
+            Sign Up
+          </Button>
+        </Link>
       </form>
     </div>
   );
