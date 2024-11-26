@@ -1,5 +1,10 @@
 "use client";
-import { Landing } from "./Landing/Landing";
+
+import MainPage from "@/components/superadmin/pages/MainPage";
+// import App from "next/app";
+
+// import { Landing } from "./Landing/Landing";
 export default function Home() {
-  return <Landing />;
+  // return <Landing />;
+return MainPage
 }
