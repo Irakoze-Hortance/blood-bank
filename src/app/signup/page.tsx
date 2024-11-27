@@ -4,7 +4,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ISignUp, signUpSchema } from "@/types/auth";
-import { EBloodGroup, ERole } from "@/types/shared";
+import { EBloodGroup, EGender, ERole } from "@/types/shared";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { IApiErrorResponse } from "@/types/shared";
@@ -50,7 +50,7 @@ const SignUpForm = () => {
   } = useForm<ISignUp>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      role: ERole.USER,
+      role: ERole.VOLUNTEER,
     },
   });
 
@@ -94,8 +94,9 @@ const SignUpForm = () => {
             className="w-full p-2 border border-gray-300 rounded-md"
           >
             <option value="">Select</option>
-            <option value="MALE">Male</option>
-            <option value="FEMALE">Female</option>
+            <option value={EGender.MALE}>Male</option>
+            <option value={EGender.FEMALE}>Female</option>
+            <option value={EGender.OTHER}>Other</option>
           </Select>
           <Input
             label="Email"

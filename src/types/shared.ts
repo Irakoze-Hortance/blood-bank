@@ -1,22 +1,30 @@
 export enum EGender {
   MALE = "MALE",
   FEMALE = "FEMALE",
+  OTHER = "OTHER",
 }
 
 export enum ERole {
   ADMIN = "ADMIN",
-  USER = "USER",
+  DONOR = "DONOR",
+  VOLUNTEER = "VOLUNTEER",
 }
 
 export enum EBloodGroup {
-  A_POSITIVE = "A_POSITIVE",
-  A_NEGATIVE = "A_NEGATIVE",
-  B_POSITIVE = "B_POSITIVE",
-  B_NEGATIVE = "B_NEGATIVE",
-  AB_POSITIVE = "AB_POSITIVE",
-  AB_NEGATIVE = "AB_NEGATIVE",
-  O_POSITIVE = "O_POSITIVE",
-  O_NEGATIVE = "O_NEGATIVE",
+  A_POSITIVE = "A_plus",
+  A_NEGATIVE = "minus",
+  B_POSITIVE = "B_plus",
+  B_NEGATIVE = "B_minus",
+  AB_POSITIVE = "AB_plus",
+  AB_NEGATIVE = "AB_minus",
+  O_POSITIVE = "O_plus",
+  O_NEGATIVE = "O_minus",
+}
+
+export enum EAppointmentStatus {
+  PENDING = "PENDING",
+  APPROVE = "APPROVE",
+  REJECTED = "REJECTED",
 }
 
 // APIErrorResponse
