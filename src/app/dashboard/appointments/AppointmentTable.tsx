@@ -8,44 +8,51 @@ import {
 } from "@radix-ui/react-dialog";
 import { Search, TriangleAlert } from "lucide-react";
 import ScheduleModal from "./ScheduleModal";
+import { useGetAppointments } from "@/services/appointment";
+import { Table } from "@/components/ui/table";
+import { IAppointment } from "@/types/appointments";
+import { EAppointmentStatus } from "@/types/shared";
 
 const AppointmentsTable = () => {
-  const appointments = [
-    {
-      hospital: "Ruli Hospital",
-      email: "rulihospital@gmail.com",
-      location: "North province Gakenke",
-      date: "20-1-2022",
-      status: "cancelled",
-    },
-    {
-      hospital: "Ruli Hospital",
-      email: "rulihospital@gmail.com",
-      location: "North province Gakenke",
-      date: "20-1-2022",
-      status: "pending",
-    },
-    {
-      hospital: "Ruli Hospital",
-      email: "rulihospital@gmail.com",
-      location: "North province Gakenke",
-      date: "20-1-2022",
-      status: "approved",
-    },
-    {
-      hospital: "Ruli Hospital",
-      email: "rulihospital@gmail.com",
-      location: "North province Gakenke",
-      date: "20-1-2022",
-      status: "done",
-    },
-  ];
+  const { data: appointments, isLoading } = useGetAppointments();
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDialogClose = () => {
     setIsOpen(false);
   };
+  const columns = [
+    {
+      header: "Hospital ID",
+      accessor: (row: IAppointment) => row.id || "Empty",
+    },
+    {
+      header: "Email",
+      accessor: (row: IAppointment) => row.id || "Empty",
+    },
+    {
+      header: "Location",
+      accessor: (row: IAppointment) => row.eventId || "Empty",
+    },
+    {
+      header: "Date",
+      accessor: (row: IAppointment) => row.createdAt || "Empty",
+    },
+    {
+      header: "Status",
+      accessor: (row: IAppointment) => (
+        <span
+          className={`inline-block px-3 py-1 rounded-full text-xs font-medium capitalize ${
+            row.status === EAppointmentStatus.APPROVED
+              ? "bg-green-100 text-green-800"
+              : "bg-yellow-100 text-yellow-800"
+          }`}
+        >
+          {row.status}
+        </span>
+      ),
+    },
+  ];
 
   const getStatusStyles = (status: string) => {
     switch (status.toLowerCase()) {
@@ -93,57 +100,11 @@ const AppointmentsTable = () => {
             <ScheduleModal onClose={handleDialogClose} />
           </Dialog>
         </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-50 border-b">
-                <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">
-                  Hospital
-                </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">
-                  Email
-                </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">
-                  Location
-                </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">
-                  Date
-                </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {appointments.map((appointment, index) => (
-                <tr key={index} className="border-b">
-                  <td className="py-4 px-4 text-sm text-gray-600">
-                    {appointment.hospital}
-                  </td>
-                  <td className="py-4 px-4 text-sm text-gray-600">
-                    {appointment.email}
-                  </td>
-                  <td className="py-4 px-4 text-sm text-gray-600">
-                    {appointment.location}
-                  </td>
-                  <td className="py-4 px-4 text-sm text-gray-600">
-                    {appointment.date}
-                  </td>
-                  <td className="py-4 px-4">
-                    <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium capitalize ${getStatusStyles(
-                        appointment.status
-                      )}`}
-                    >
-                      {appointment.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Table
+          data={appointments?.data ?? []}
+          isLoading={isLoading}
+          columns={columns}
+        />
       </div>
     </>
   );

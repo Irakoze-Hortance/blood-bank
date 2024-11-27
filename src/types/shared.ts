@@ -23,7 +23,7 @@ export enum EBloodGroup {
 
 export enum EAppointmentStatus {
   PENDING = "PENDING",
-  APPROVE = "APPROVE",
+  APPROVED = "APPROVE",
   REJECTED = "REJECTED",
 }
 
@@ -31,4 +31,16 @@ export enum EAppointmentStatus {
 
 export interface IApiErrorResponse {
   message: string;
+}
+
+export interface ITable {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IResponse<T> {
+  data: T;
+  message: string;
+  status: number;
 }
