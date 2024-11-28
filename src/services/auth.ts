@@ -14,7 +14,7 @@ export function signUp(data: ISignUp) {
 }
 
 export function useGetMe() {
-  return useQuery<IResponse<IUser>, AxiosError<IApiErrorResponse>>({
+  return useQuery<IUser, AxiosError<IApiErrorResponse>>({
     queryKey: ["me"],
     queryFn: () => axiosInstance.get("/auth/me").then((res) => res.data),
   });
