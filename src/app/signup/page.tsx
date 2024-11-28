@@ -28,13 +28,13 @@ const SignUp = () => {
 const SignUpForm = () => {
   const router = useRouter();
   const { mutate, isPending: isCreatingUser } = useMutation({
-    onSuccess() {
+    onSuccess(data) {
       toast.success(
         `${getValues("firstName")} ${getValues(
           "lastName"
         )}, welcome to the family`
       );
-      router.push("/dashboard");
+      router.push("/signin");
     },
     onError(error: IApiErrorResponse) {
       toast.error(error?.message ?? "Failed to add new computer");

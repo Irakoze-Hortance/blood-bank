@@ -16,7 +16,9 @@ import { toast } from "sonner";
 const LoginForm = () => {
   const router = useRouter();
   const { mutate, isPending: isSigningIn } = useMutation({
-    onSuccess() {
+    onSuccess(data) {
+      const token = data?.data?.access_token;
+      localStorage.setItem("token", token);
       toast.success("Welcome back");
       router.push("/dashboard");
     },
