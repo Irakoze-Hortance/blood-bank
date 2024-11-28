@@ -1,10 +1,12 @@
 "use client";
+import ForgotPasswordDialog from "@/components/ForgotPassword";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signIn, signUp } from "@/services/auth";
 import { ISignIn, signInSchema } from "@/types/auth";
 import { IApiErrorResponse } from "@/types/shared";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Dialog } from "@radix-ui/react-dialog";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -57,7 +59,9 @@ const LoginForm = () => {
           placeholder="Enter your password"
           error={errors.password?.message}
         />
-        <p className="underline text-end ">Forgot Password?</p>
+        <Dialog>
+          <ForgotPasswordDialog />
+        </Dialog>
         <div>
           <Button
             type="submit"
