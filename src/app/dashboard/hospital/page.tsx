@@ -1,13 +1,14 @@
 "use client";
 import { useGetHospitals } from "@/services/hospital";
 import React from "react";
+import WeightModal from "../donations/AddModal";
 
 function Hospital() {
   const { data: hospitals, isPending: isLoadingHospitals } = useGetHospitals();
-  const length = hospitals?.data?.length || 0;
+  const length = hospitals?.length || 0;
   const randomIndex = Math.floor(Math.random() * length);
-  const featuredHospital = hospitals?.data?.[randomIndex];
-  const restHospitals = hospitals?.data?.filter(
+  const featuredHospital = hospitals?.[randomIndex];
+  const restHospitals = hospitals?.filter(
     (hospital) => hospital.id !== featuredHospital?.id
   );
 
@@ -49,9 +50,7 @@ function Hospital() {
                 <i className="far fa-calendar-alt"></i> 12th May,{" "}
                 {new Date().getFullYear()}
               </p>
-              <button className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">
-                Donate
-              </button>
+              <WeightModal text="Donate" />
             </div>
           </div>
         </div>
@@ -81,9 +80,7 @@ function Hospital() {
                     <span className="font-medium">Location:</span>{" "}
                     {item.district}, {item.sector}
                   </p>
-                  <button className="bg-red-500 text-white mt-4 px-4 py-2 rounded shadow hover:bg-red-600">
-                    Donate
-                  </button>
+                  <WeightModal text="Donate" />
                 </div>
               </div>
             ))}
