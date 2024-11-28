@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 export const Topbar = () => {
   const { data: me, isPending: isLoadingMyData } = useGetMe();
-
   const pathname = usePathname();
   const lastPart = pathname.split("/").pop();
   return (
@@ -26,7 +25,7 @@ export const Topbar = () => {
         <div className="flex gap-3">
           <div>
             <h2 className="font-bold">
-              {me?.data?.firstName} {me?.data?.lastName}
+              {me?.firstName} {me?.lastName}
             </h2>
             <p className="font-light">Active</p>
           </div>
