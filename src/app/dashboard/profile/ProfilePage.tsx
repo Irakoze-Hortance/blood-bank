@@ -19,17 +19,6 @@ import {
 } from "@/types/user";
 
 const ProfilePage = () => {
-  const [formData, setFormData] = useState({
-    firstName: 'Gahamanyi',
-    lastName: 'Yvette',
-    email: 'ygahamanyi@gmail.com',
-    gender: 'Female',
-    dateOfBirth: '2021-01-22',
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
-  });
-
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
