@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { signIn, signUp } from "@/services/auth";
+import { signIn } from "@/services/auth";
 import { ISignIn, signInSchema } from "@/types/auth";
 import { IApiErrorResponse } from "@/types/shared";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +18,7 @@ const LoginForm = () => {
       const token = data?.data?.access_token;
       localStorage.setItem("token", token);
       toast.success("Welcome back");
-      router.push("/dashboard");
+      router.push("/resolver");
     },
     onError(error: IApiErrorResponse) {
       toast.error(error?.message ?? "Failed to add new computer");
