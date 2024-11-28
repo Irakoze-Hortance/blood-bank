@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Calendar, LogOut, Droplet, LayoutDashboard, Hand } from "lucide-react";
+import { logout } from "@/services/auth";
 
 const AdminNavbar = () => {
   const pathname = usePathname();
@@ -34,13 +35,13 @@ const AdminNavbar = () => {
       </nav>
 
       <div className="p-6 border-t border-gray-200">
-        <a
-          href="#"
+        <span
+          onClick={logout}
           className="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 rounded-lg"
         >
           <LogOut className="w-5 h-5 mr-3" />
           Logout
-        </a>
+        </span>
         {/* <p className="mt-6 text-center text-xs text-gray-400">
                     copyright@2020 aimed
                 </p> */}
