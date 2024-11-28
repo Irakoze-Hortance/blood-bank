@@ -37,7 +37,7 @@ const SignUpForm = () => {
       router.push("/signin");
     },
     onError(error: IApiErrorResponse) {
-      toast.error(error?.message ?? "Failed to add new computer");
+      toast.error(error?.message ?? "Failed to create account");
     },
     mutationFn: signUp,
   });

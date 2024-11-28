@@ -17,7 +17,7 @@ export function deleteHospital(id: number) {
 }
 
 export function useGetHospitals() {
-  return useQuery<IResponse<IHospital[]>, AxiosError<IApiErrorResponse>>({
+  return useQuery<IHospital[], AxiosError<IApiErrorResponse>>({
     queryKey: ["hospitals"],
     queryFn: () => axiosInstance.get("/hospitals").then((res) => res.data),
   });
