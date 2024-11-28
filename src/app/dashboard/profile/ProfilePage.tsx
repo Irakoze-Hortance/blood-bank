@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import { updateUser } from "@/services/user";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   IUpdatePassword,
@@ -20,6 +19,61 @@ import {
 } from "@/types/user";
 
 const ProfilePage = () => {
+  const queryClient = useQueryClient();
+  const { data: myData, isLoading: isLoadingMyData } = useGetMe();
+
+  const { mutate, isPending: isCreatingUser } = useMutation({
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ["me"],
+      });
+      toast.success("Profile updated successfully");
+    },
+    onError(error: IApiErrorResponse) {
+      toast.error(error?.message ?? "Failed to update profile");
+    },
+    mutationFn: (data: ISignUp) => updateUser(myData?.id!, data),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm<ISignUp>({
+    resolver: zodResolver(updateProfileSchema),
+    defaultValues: {
+      role: myData?.role,
+      address: myData?.address,
+      bloodGroup: myData?.bloodGroup,
+      email: myData?.email,
+      firstName: myData?.firstName,
+      lastName: myData?.lastName,
+      gender: myData?.gender,
+    },
+  });
+
+  const {
+    register: passwordRegister,
+    handleSubmit: passwordHandleSubmit,
+    formState: { errors: passwordErrors, isDirty: isPasswordDirty },
+  } = useForm<IUpdatePassword>({
+    resolver: zodResolver(updatePasswordSchema),
+    defaultValues: {
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
+  });
+
+  const onSubmit = (data: ISignUp) => {
+    mutate(data);
+  };
+
+  const onPasswordSubmit = (data: IUpdatePassword) => {
+    console.log(data);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
