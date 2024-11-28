@@ -1,5 +1,5 @@
 import DonorData from "./DonorsData";
-
+import ReactQueryProvider from "@/app/providers/QueryProvider";
 const Donors = () => {
   return (
     <div className="flex">

@@ -1,7 +1,8 @@
 import AdminSidebar from "@/app/components/Sidebar/AdminNavbar";
-
+import ReactQueryProvider from "../providers/QueryProvider";
 function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
+
     <div className="flex h-screen">
       <div className="w-64 bg-inherit text-white flex flex-col">
         <AdminSidebar />

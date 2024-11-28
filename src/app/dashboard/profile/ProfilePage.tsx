@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import { Camera, Save } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+
 
 const ProfilePage = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +17,11 @@ const ProfilePage = () => {
     newPassword: '',
     confirmPassword: ''
   });
+  
+  const fetchProfileData = async () => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`);
+    return response.data;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
